@@ -12,12 +12,11 @@ const modules = data.modules
 const map = new Map<string, number>()
 
 for (const m of modules) {
-  if (m.source.includes('chains')) {
-    console.log(m)
-  }
   map.set(m.source, m.dependencies.length)
 }
 
 const v = [...map.entries()].sort((a, b) => b[1] - a[1])
 
-console.log(v.slice(0, 10))
+v.slice(0, 10).forEach(([path, value]) =>
+  console.log(`${path} depends on ${value} files`),
+)
